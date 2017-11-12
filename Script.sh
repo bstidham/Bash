@@ -26,7 +26,7 @@ if [[ $verbosity -ge 1 ]]; then printf "INFO: %s: Verbosity: %s\n" "$program_nam
 if [[ $verbosity -ge 1 ]]; then printf "INFO: %s: Debug Copy Temp: %s\n" "$program_name" "$debug_copy_temp"; fi 
 
 # sanity
-if [[ ! -d "$debug_copy_temp" ]]; then
+if [ "$debug_copy_temp" != "false" ] && [ ! -d "$debug_copy_temp" ]; then
     printf "ERROR: %s: Debug Copy Temp folder does not exist\n" "$program_name" > /dev/stderr;
     exit 1;
 fi
