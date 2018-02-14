@@ -14,7 +14,7 @@ projectsubject=$(echo "$1" | sed -rn 's/^[^1-9]*[0-9]+ *[:-] *(.*)/\1/p');
 IFSB="$IFS"; IFS=',';
 for a in $(echo "$projectsubject" | cut -d'-' -f1); do
   search_arg=" - ${a}-$(echo "$projectsubject" | cut -d'-' -f2-)";
-  tsproject=$(sqlite3 -noheader "${script_dir}/BuildHeader.db" \
+  tsproject=$(sqlite3 -noheader "${script_dir}/Notes.db" \
             "SELECT IFNULL(NULLIF(TSProject, '') || ', ', '') || IFNULL(NULLIF(stpm.Project, ''), '? • ?') Project 
              FROM (SELECT '${search_arg}' Summary
                         , '${tsproject}' TSProject
