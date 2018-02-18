@@ -25,12 +25,6 @@ if [[ $verbosity -ge 1 ]]; then printf "INFO: %s: Analysis Date: %s\n" "$program
 if [[ $verbosity -ge 1 ]]; then printf "INFO: %s: Verbosity: %s\n" "$program_name" "$verbosity"; fi 
 if [[ $verbosity -ge 1 ]]; then printf "INFO: %s: Debug Copy Temp: %s\n" "$program_name" "$debug_copy_temp"; fi 
 
-# sanity
-if [ "$debug_copy_temp" != "false" ] && [ ! -d "$debug_copy_temp" ]; then
-    printf "ERROR: %s: Debug Copy Temp folder does not exist\n" "$program_name" > /dev/stderr;
-    exit 1;
-fi
-
 # variables
 program_name=$(basename "$0" | sed 's/.sh//g');
 script_dir=$(dirname "$0");
@@ -38,7 +32,7 @@ script_dir=$(dirname "$0");
 
 #trap catch
 function trap_fn() {
-  if [[ "$debug_copy_temp" != "false" ]]; then 
+  if [ -d "$debug_copy_temp" ]; then 
     if [[ $verbosity -ge 1 ]]; then printf "DEBUG: %s: Copying temp folder to \"%s\"\n" "$program_name" "$debug_copy_temp"; fi
     cp -r "$temp_dir" "$debug_copy_temp";
   fi
