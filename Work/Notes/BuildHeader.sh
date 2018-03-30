@@ -38,11 +38,12 @@ project_ssms_folder="PROJECT_SSMS_FOLDER HERE";
 project_ssms_template_name="PROJECT_SSMS_TEMPLATE_NAME HERE";
 project_svn_folder="PROJECT_SVN_FOLDER HERE";
 header="# $projectid_padded - $projectsubject\r\n\
-<PROJECT TRACKING URL HERE>\r\n\
-<file://PROJECT_FS_FOLDER_FWDSSLASH HERE>\r\n\
-<file://PROJECT_FS_FOLDER_FWDSSLASH HERE/Progress.md>\r\n\
-<file://PROJECT_FS_FOLDER_FWDSSLASH HERE/Event Log.md>\r\n\
-<SVN_URL HERE>\r\n\
+[Project](PROJECT TRACKING URL HERE)\r\n\
+[Project Folder](file://PROJECT_FS_FOLDER_FWDSSLASH HERE)\r\n\
+[Progress](file://PROJECT_FS_FOLDER_FWDSSLASH HERE/Progress.md)\r\n\
+[Event Log](file://PROJECT_FS_FOLDER_FWDSSLASH HERE/Event Log.md)\r\n\
+[Design](file://PROJECT_FS_FOLDER_FWDSSLASH HERE/Design.md)\r\n\
+[SVN](SVN_URL HERE)\r\n\
 TSTime: 0\r\n\
 TSProject: $tsproject\r\n\
 TSStartDate: ?\r\n\
@@ -71,6 +72,10 @@ if [[ "$tsproject" != "? • ?" ]]; then
   if [ ! -e "$project_fs_folder/Event Log.md" ]; then
     cp "$script_dir/templates/Event Log.template" "$project_fs_folder/Event Log.md";
     echo "$project_fs_folder/Event Log.md created";
+  fi
+  if [ ! -e "$project_fs_folder/Design.md" ]; then
+    cp "$script_dir/templates/Design.template" "$project_fs_folder/Design.md";
+    echo "$project_fs_folder/Design.md created";
   fi
   if [ ! -e "$project_fs_folder/Progress.md" ]; then
     cp "$script_dir/templates/Progress - Development.template" "$project_fs_folder/Progress.md";
